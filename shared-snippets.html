@@ -1,0 +1,15 @@
+template snippets/wrapper.html
+
+{% load actionkit_tags %}
+
+{% if snippet == "unique_descriptive_name" %}
+code here
+{% else if snippet == "unique_descriptive_second_name" %}
+other code here
+{% endif %}
+
+^^^ just keep adding code here
+
+template My Default Templateset/petition.html
+
+{% include "snippets/wrapper.html" with snippet="unique_descriptive_second_name" %}
