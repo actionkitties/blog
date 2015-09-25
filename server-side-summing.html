@@ -1,0 +1,23 @@
+{% with "[0]"|load_json as series %}
+  {% for value in my_array %}
+    {% with series|last|add:value as latest_sum %}
+      {% record latest_sum in series %}
+      {% if forloop.last %}
+        {{ latest_sum }}
+      {% endif %}
+    {% endwith %}
+  {% endfor %}
+{% endwith %}
+
+Averaging (rounded to nearest integer) too:
+
+{% with "[0]"|load_json as series %}
+  {% for value in my_array %}
+    {% with series|last|add:value as latest_sum %}
+      {% record latest_sum in series %}
+      {% if forloop.last %}
+        {% widthratio latest_sum series|length|subtract:1 1 %}
+      {% endif %}
+    {% endwith %}
+  {% endfor %}
+{% endwith %}
